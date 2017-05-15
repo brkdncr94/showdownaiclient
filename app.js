@@ -12,6 +12,8 @@ var BFSAgent = require('./agents/BFSAgent').Agent;
 var MinimaxAgent = require('./agents/MinimaxAgent').Agent;
 var SPAgent = require('./agents/SPessimist').Agent;
 var PMMAgent = require('./agents/PMinimax').Agent;
+var BWAgent = require('./agents/BWAgent').Agent;
+var NewAgent = require('./agents/MinimaxTreeSearch').Agent;
 
 try {
     require.resolve('./zarel/config/config');
@@ -175,7 +177,7 @@ else {
     for (var i = 0; i < 2; i++) {
         var game = new OfflineGame();
         console.time('gametime');
-        scores.push(game.playGames(new PMMAgent(), new RandomAgent(), 1, 'competitive'));
+        scores.push(game.playGames(new NewAgent(), new OTLAgent(), 1, 'randommirror'));
         console.timeEnd('gametime');
     }
     console.log(scores);
