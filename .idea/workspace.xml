@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7470394b-25cf-4228-9ed0-791e810d1040" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agents/BWAgent.js" afterPath="$PROJECT_DIR$/agents/BWAgent.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +19,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="15" column="50" lean-forward="false" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+            <state relative-caret-position="503">
+              <caret line="173" column="9" lean-forward="true" selection-start-line="173" selection-start-column="9" selection-end-line="173" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -28,20 +29,19 @@
       <file leaf-file-name="MCTree.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/agents/MCTree.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="35" column="51" lean-forward="false" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
+            <state relative-caret-position="836">
+              <caret line="52" column="32" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BWAgent.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BWAgent.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/agents/BWAgent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="156" column="23" lean-forward="true" selection-start-line="156" selection-start-column="23" selection-end-line="156" selection-end-column="23" />
+            <state relative-caret-position="714">
+              <caret line="34" column="26" lean-forward="false" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
                 <element signature="n#!!block;n#cloneBattle#0;n#BWAgent#0" expanded="false" />
                 <element signature="n#!!block;n#parseRequestData#0;n#BWAgent#0" expanded="false" />
               </folding>
@@ -49,17 +49,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RandomAgent.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/agents/RandomAgent.js">
+      <file leaf-file-name="battle-engine.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zarel/battle-engine.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="836">
-              <caret line="68" column="28" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="68" selection-end-column="28" />
+            <state relative-caret-position="279">
+              <caret line="2492" column="149" lean-forward="false" selection-start-line="2492" selection-start-column="136" selection-end-line="2492" selection-end-column="149" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OTLAgent.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RandomAgent.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/agents/RandomAgent.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1428">
+              <caret line="68" column="28" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="68" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OTLAgent.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/agents/OTLAgent.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="21">
@@ -102,6 +112,7 @@
       <find>fetch_ran</find>
       <find>queue</find>
       <find>getWo</find>
+      <find>BattlePokemon</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -116,10 +127,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/agents/MCTree.js" />
-        <option value="$PROJECT_DIR$/agents/BWAgent.js" />
         <option value="$PROJECT_DIR$/agents/NewAgent.js" />
         <option value="$PROJECT_DIR$/agents/MinimaxTreeSearch.js" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/agents/BWAgent.js" />
       </list>
     </option>
   </component>
@@ -160,7 +171,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -187,23 +198,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="showdownaiclient" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="showdownaiclient" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agents" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -663,16 +660,16 @@
       <workItem from="1494802195163" duration="41000" />
       <workItem from="1494802927050" duration="3884000" />
       <workItem from="1494825236866" duration="2087000" />
-      <workItem from="1494874476734" duration="4554000" />
+      <workItem from="1494874476734" duration="4748000" />
+      <workItem from="1494883211459" duration="1022000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32801000" />
+    <option name="totallyTimeSpent" value="34017000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -717,6 +714,49 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="50" lean-forward="false" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agents/MCTree.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="35" column="51" lean-forward="false" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agents/BWAgent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2646">
+          <caret line="156" column="23" lean-forward="true" selection-start-line="156" selection-start-column="23" selection-end-line="156" selection-end-column="23" />
+          <folding>
+            <element signature="n#!!block;n#cloneBattle#0;n#BWAgent#0" expanded="false" />
+            <element signature="n#!!block;n#parseRequestData#0;n#BWAgent#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agents/RandomAgent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1428">
+          <caret line="68" column="28" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="68" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agents/OTLAgent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="24" column="45" lean-forward="false" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3675">
           <caret line="175" column="25" lean-forward="false" selection-start-line="175" selection-start-column="25" selection-end-line="175" selection-end-column="25" />
           <folding />
@@ -744,7 +784,6 @@
         <state relative-caret-position="10416">
           <caret line="496" column="28" lean-forward="false" selection-start-line="496" selection-start-column="28" selection-end-line="496" selection-end-column="28" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="n#!!block;n#cloneBattle#0;n#BWAgent#0" expanded="false" />
             <element signature="n#!!block;n#parseRequestData#0;n#BWAgent#0" expanded="false" />
           </folding>
@@ -764,7 +803,6 @@
         <state relative-caret-position="1869">
           <caret line="133" column="9" lean-forward="false" selection-start-line="133" selection-start-column="4" selection-end-line="133" selection-end-column="9" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="n#!!block;n#cloneBattle#0;n#BWAgent#0" expanded="false" />
             <element signature="n#!!block;n#parseRequestData#0;n#BWAgent#0" expanded="false" />
           </folding>
@@ -824,7 +862,6 @@
         <state relative-caret-position="6426">
           <caret line="369" column="53" lean-forward="false" selection-start-line="369" selection-start-column="53" selection-end-line="369" selection-end-column="53" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="n#!!block;n#cloneBattle#0;n#BWAgent#0" expanded="false" />
             <element signature="n#!!block;n#parseRequestData#0;n#BWAgent#0" expanded="false" />
           </folding>
@@ -860,7 +897,6 @@
         <state relative-caret-position="6426">
           <caret line="369" column="53" lean-forward="true" selection-start-line="369" selection-start-column="53" selection-end-line="369" selection-end-column="53" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="n#!!block;n#cloneBattle#0;n#BWAgent#0" expanded="false" />
             <element signature="n#!!block;n#parseRequestData#0;n#BWAgent#0" expanded="false" />
           </folding>
@@ -904,7 +940,6 @@
         <state relative-caret-position="2751">
           <caret line="194" column="45" lean-forward="true" selection-start-line="194" selection-start-column="45" selection-end-line="194" selection-end-column="45" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="n#!!block;n#cloneBattle#0;n#BWAgent#0" expanded="false" />
             <element signature="n#!!block;n#parseRequestData#0;n#BWAgent#0" expanded="false" />
           </folding>
@@ -932,7 +967,6 @@
         <state relative-caret-position="2121">
           <caret line="164" column="27" lean-forward="false" selection-start-line="164" selection-start-column="27" selection-end-line="164" selection-end-column="27" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="n#!!block;n#cloneBattle#0;n#BWAgent#0" expanded="false" />
             <element signature="n#!!block;n#parseRequestData#0;n#BWAgent#0" expanded="false" />
           </folding>
@@ -960,7 +994,6 @@
         <state relative-caret-position="3444">
           <caret line="164" column="27" lean-forward="false" selection-start-line="164" selection-start-column="27" selection-end-line="164" selection-end-column="27" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="n#!!block;n#cloneBattle#0;n#BWAgent#0" expanded="false" />
             <element signature="n#!!block;n#parseRequestData#0;n#BWAgent#0" expanded="false" />
           </folding>
@@ -1002,7 +1035,6 @@
         <state relative-caret-position="5943">
           <caret line="283" column="10" lean-forward="false" selection-start-line="283" selection-start-column="10" selection-end-line="283" selection-end-column="10" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="n#!!block;n#cloneBattle#0;n#BWAgent#0" expanded="false" />
             <element signature="n#!!block;n#parseRequestData#0;n#BWAgent#0" expanded="false" />
           </folding>
@@ -1013,13 +1045,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
           <caret line="163" column="44" lean-forward="false" selection-start-line="163" selection-start-column="37" selection-end-line="163" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zarel/battle-engine.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="4573" column="17" lean-forward="false" selection-start-line="4573" selection-start-column="16" selection-end-line="4573" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -1040,16 +1065,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/agents/RandomAgent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="68" column="28" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="68" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agents/MCTree.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="35" column="51" lean-forward="false" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
+        <state relative-caret-position="1428">
+          <caret line="68" column="28" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="68" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -1072,31 +1089,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/agents/OTLAgent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="24" column="45" lean-forward="false" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="50" lean-forward="false" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+        <state relative-caret-position="503">
+          <caret line="173" column="9" lean-forward="true" selection-start-line="173" selection-start-column="9" selection-end-line="173" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zarel/battle-engine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="2492" column="149" lean-forward="false" selection-start-line="2492" selection-start-column="136" selection-end-line="2492" selection-end-column="149" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agents/MCTree.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="836">
+          <caret line="52" column="32" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/agents/BWAgent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="156" column="23" lean-forward="true" selection-start-line="156" selection-start-column="23" selection-end-line="156" selection-end-column="23" />
+        <state relative-caret-position="714">
+          <caret line="34" column="26" lean-forward="false" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="n#!!block;n#cloneBattle#0;n#BWAgent#0" expanded="false" />
             <element signature="n#!!block;n#parseRequestData#0;n#BWAgent#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agents/OTLAgent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="24" column="45" lean-forward="false" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>

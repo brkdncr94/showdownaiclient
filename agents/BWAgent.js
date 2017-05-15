@@ -2,19 +2,12 @@
  * Created by brkdn on 01/05/2017.
  */
 
-/**********************************************************************
- Making the assumption for all pokemon instead of just the one in front of us
- Retrieving opponent's options for planning (requires perfect knowledge)
-
- Otherwise planning with the assumption that opponent will not switch(?)
-***********************************************************************/
-
 'use strict';
 
 var Pokemon = require('../zarel/battle-engine').BattlePokemon;
 var clone = require('../clone')
 var BattleSide = require('../zarel/battle-engine').BattleSide;
-var MCTreeNode = require('./MCTree').MCTreeNode;
+//var MCTreeNode = require('./MCTree').MCTreeNode;
 var PriorityQueue = require('priorityqueuejs');
 var Tools = require('../zarel/tools');
 
@@ -30,6 +23,40 @@ var Tools = require('../zarel/tools');
 // getTeam(format) should return the team that the agent plans on using.  This is only relevant if playing in a non-random format.
 
 // All agents should also come with an assumptions object, which will guide how the InterfaceLayer deals with various aspects of hidden information.
+class MCTreeNode {
+
+    constructor(gameState, parent, choice) {
+
+        this.gameState = gameState; //clone(gameState);
+        this.children = [];
+        this.parent = parent;
+        this.choice = choice;
+        this.playCount = 1;
+        this.winCount = 0;
+    }
+
+    getUCB1 () {
+        // See https://en.wikipedia.org/wiki/Monte_Carlo_tree_search#Exploration_and_exploitation
+        if(this.parent != null){
+            return (this.winCount / this.playCount) + Math.sqrt(2 * Math.log(this.parent.playCount) / this.playCount);
+        }
+        else{
+            return (-1);
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 class BWAgent {
     constructor() { }
@@ -94,47 +121,13 @@ class BWAgent {
         return this.parseRequestData({ active: activeData, side: state.sides[player].getData(), rqid: state.rqid });
     }
 
-    /*evaluateState(state, player) {
+    evaluateState(state, player) {
         var myp = state.sides[player].active[0].hp / state.sides[player].active[0].maxhp;
         var thp = state.sides[1 - player].active[0].hp / state.sides[1 - player].active[0].maxhp;
         return myp - 3 * thp - 0.3 * state.turn;
-    }*/
-
-    evaluateState(state, player) {
-        var myp = state.sides[player].active[0].hp / state.sides[player].active[0].maxhp;
-        var mstat = state.sides[player].active[0].status;
-        if(mstat != '')
-            myp = myp * 2 / 3;
-        var boostLevel = state.sides[player].active[0].boosts.atk +
-            state.sides[player].active[0].boosts.def +
-            state.sides[player].active[0].boosts.spa +
-            state.sides[player].active[0].boosts.spd +
-            state.sides[player].active[0].boosts.spe +
-            state.sides[player].active[0].boosts.accuracy +
-            state.sides[player].active[0].boosts.evasion;
-        myp = myp * (1 + boostLevel/(2*5));
-
-
-        var thp = state.sides[1 - player].active[0].hp / state.sides[1 - player].active[0].maxhp;
-        var thstat = state.sides[1 - player].active[0].status;
-        if(thstat != '')
-            thp = thp * 2 / 3;
-        var boostLevel2 = state.sides[1-player].active[0].boosts.atk +
-            state.sides[1-player].active[0].boosts.def +
-            state.sides[1-player].active[0].boosts.spa +
-            state.sides[1-player].active[0].boosts.spd +
-            state.sides[1-player].active[0].boosts.spe +
-            state.sides[1-player].active[0].boosts.accuracy +
-            state.sides[1-player].active[0].boosts.evasion;
-        thp = thp * (1 + boostLevel2/(2*5));
-        //return myp - thp - 0.3 * state.turn
-        return myp - thp;
     }
 
     getWorstOutcome(state, playerChoice, player) {
-        //console.log("Inside getWorstOutcome");
-
-
         var nstate = this.cloneBattle(state);
         var oppChoices = this.getOptions(nstate, 1 - player);
         var worststate = null;
@@ -148,16 +141,12 @@ class BWAgent {
                 worststate = cstate;
             }
         }
-        //console.log("Returning getWorstOutcome");
         return worststate;
     }
 
 
     // FOR MONTE CARLO TREE SEARCH
     getQueue(treeNode){
-
-        //console.log("GetQueue was called.");
-
         var pQueue = new PriorityQueue(function (a, b) {
                 var aWin = a.winCount;
                 var aPlay = a.playCount;
@@ -194,14 +183,8 @@ class BWAgent {
 
     selection(treeRoot, mySide){
         // Find a node with unexpanded children
-        //console.log("Selection was called");
-
-        //console.log("Calling GetQueue from Selection");
         var pQueue = this.getArray(treeRoot);
-
-        //***************************************************
         var nodeIndex = Math.floor(Math.random() * pQueue.length);
-
         var tempNode = pQueue[nodeIndex];
         var myTurnOptions = this.getOptions(tempNode.gameState, mySide.id);
 
@@ -223,43 +206,11 @@ class BWAgent {
         }
 
         return tempNode;
-        //***************************************************
-
-
-        /*var size = pQueue.size();
-        for(var i=0; i<size; i++ ){
-            var tempNode = pQueue.deq();
-            // get options for the game state at that node
-            var myTurnOptions = this.getOptions(tempNode.gameState, mySide.id);
-
-            var numOptions = 0;
-            for(var opt in myTurnOptions){
-                numOptions++;
-            }
-
-            //console.log("Number of tempNode's Children: " + tempNode.children.length);
-            //console.log("Number of our options: " + numOptions);
-
-            if(tempNode.children.length < numOptions){
-                //console.log("Selected a node with unexpanded children");
-                return tempNode;
-            }
-        }*/
-
-        //console.log("Selected the root node with unexpanded children (THIS IS BS)");
-        //return treeRoot;
     }
 
     expansion(treeNode, mySide){
         // identify an action not considered yet
         // if an action is considered, there is a child node containing that choice
-        //console.log("Expansion was called");
-
-        //console.log("Calling GetOptions from Expansion");
-        /*if(treeNode.gameState.parent == null){
-            console.log("Expanding from Root (current game state)");
-        }*/
-
         var myTurnOptions = this.getOptions(treeNode.gameState, mySide.id);
         var toConsider = true;
         var choice;
@@ -278,13 +229,10 @@ class BWAgent {
 
         var cstate = this.cloneBattle(treeNode.gameState);
 
-        //console.log("Calling GetWorstOutcome from Expansion");
-
         var newState= this.getWorstOutcome(cstate, choice, mySide.n);
 
         var newNode = new MCTreeNode(newState, treeNode, choice);
         treeNode.children.push(newNode);
-        //console.log("Num of TreeNode's children: " + treeNode.children.length);
 
         return newNode;
     }
@@ -292,26 +240,7 @@ class BWAgent {
     simulation(treeNode, mySide){
         // we will perform random roll-outs while assuming the opponent deals the most damage possible
         // stop when one of the pokemon on the ground faint
-
-        //console.log("Simulation was called");
-
-        //tempNode = treeNode.deepCopy();
         var terminalState = false;
-
-        /*while(terminalState == false){
-            var cstate = this.cloneBattle(treeNode.gameState);
-
-            var myTurnOptions = this.getOptions(cstate, mySide.id);
-            var myRandomChoice = this.fetch_random_key(myTurnOptions);
-
-            var newState= this.getWorstOutcome(cstate, myRandomChoice, mySide.n);
-
-            var newNode = new MCTreeNode(newState, treeNode, myRandomChoice);
-            treeNode.children.push(newNode);
-
-            treeNode = newNode;
-            terminalState = this.isTerminal(newState, mySide.n);
-        }*/
 
         for(var i=0; i<10; i++){
             if(!this.isTerminal(treeNode.gameState, mySide.n)){
@@ -372,7 +301,6 @@ class BWAgent {
                 var cDamage = nstate.getDamage(mySide.active[0], oppactive[0], options[option].id, false);
 
                 if (cDamage && cDamage > maxDamage) {
-                    // console.log(mySide.active[0].name + "'s " + options[option].move + " is expected to deal " + cDamage + " damage to " + oppactive[0].name);
                     maxDamage = cDamage;
                     bOption = option;
                 }
@@ -384,7 +312,6 @@ class BWAgent {
                     var cDamage = nstate.getDamage(mySide.pokemon[pIndex], oppactive[0], mID, false);
 
                     if (cDamage && cDamage > maxDamage) {
-                        // console.log(mySide.pokemon[pIndex].name + "'s " + mID + " is expected to deal " + cDamage + " damage to " + oppactive[0].name);
                         maxDamage = cDamage;
                         bOption = option;
                     }
@@ -396,15 +323,12 @@ class BWAgent {
                 maxDamage = 1;
             }
         }
-        // console.log(bOption);
         return bOption;
     }
 
 
 
     decide(gameState, options, mySide) {
-
-        //var foe = mySide.foe.n;
         var choice;
         var nstate = this.cloneBattle(gameState);
         nstate.p1.currentRequest = 'move';
@@ -419,51 +343,27 @@ class BWAgent {
 
         var oppactive = gameState.sides[1 - mySide.n].active;
 
-        /*function battleSend(type, data) {
-            if (this.sides[1 - this.me].active[0].hp == 0 || this.sides[1 - this.me].currentRequest == 'switch') {
-                this.isTerminal = true;
-            }
-            if (this.sides[this.me].currentRequest != 'move') {
-                this.badTerminal = true;
-            }
-        }*/
-
-        /*function battleSend(type, data) {
-            if (this.sides[1 - this.me].active[0].hp == 0) {
-                this.isTerminal = true;
-            }
-            else if (this.sides[1 - this.me].currentRequest == 'switch' || this.sides[this.me].active[0].hp == 0) {
-                this.badTerminal = true;
-            }
-        }*/
-
-        //nstate.send = battleSend;
-
         var effectiveness = Tools.getEffectiveness(oppactive[0].types, mySide.active[0]);
-        //console.log("Opponent's: " + oppactive[0] +  "  Mine: " + mySide.active[0].name);
         console.log("Opponent's effectiveness: " + effectiveness);
-
-        //var effectiveness = 1;
 
         if(effectiveness > 0) {
             // Opponent is super effective, we should simply switch
             // Switch to the pokemon with greatest health or most effective?
             var bestSwitchChoice;
             var maxSwitchHP = 0;
+            var pIndex;
             for(var option in options){
                 if (option.startsWith('switch')){
-                    var pIndex = parseInt(option.split(" ")[1]) - 1;
+                    pIndex = parseInt(option.split(" ")[1]) - 1;
                     var pokemon = nstate.sides[mySide.n].pokemon[pIndex];
                     var switchEffectiveness = Tools.getEffectiveness(oppactive[0].types, pokemon);
 
-                    //var switchEffectiveness = -1;
                     if((pokemon != null) && (switchEffectiveness < 0) && (pokemon.hp > maxSwitchHP)){
                         bestSwitchChoice = option;
                     }
                 }
             }
 
-            //var pIndex = parseInt(bestSwitchChoice.split(" ")[1]) - 1;
             var pokemon = nstate.sides[mySide.n].pokemon[pIndex];
 
             console.log("Opponent's pokemon is super-effective.");
@@ -474,7 +374,7 @@ class BWAgent {
                 choice = bestSwitchChoice;
             }
             else{
-                console.log("Switching returned a NULL choice. WTF DUDE? - 1/n");
+                console.log("Switching returned a NULL choice. THIS SHOULDN'T HAPPEN - 1/n");
                 choice = this.fetch_random_key(options);
             }
 
@@ -483,7 +383,6 @@ class BWAgent {
             console.log("I SHALL MAKE AN AWESOME RANDOM PLAN!");
             // We should plan an attack
             // We are assuming the opponent will not switch
-            //console.log("Creating Root Node");
 
             // This loop is occupying the first level of the tree
             var rootNode = new MCTreeNode(nstate, null, "");
@@ -499,19 +398,10 @@ class BWAgent {
             // build the Monte Carlo Tree
             for(var i=0; i<40; i++){
 
-                //console.log("Calling Selection from Decide");
                 var selectedNode = this.selection(rootNode, mySide);
-
-                //console.log("Calling Expansion from Decide");
                 var newNode = this.expansion(selectedNode, mySide);
-                //console.log("Num of TreeNode's children: " + newNode.parent.children.length);
-
-                //console.log("Calling Simulation from Decide");
                 var terminalNode = this.simulation(newNode, mySide);
-
-                //console.log("Calling BackPropagation from Decide");
                 this.backPropagation(terminalNode, mySide);
-
             }
 
             var pQueue = this.getQueue(rootNode);
@@ -522,20 +412,12 @@ class BWAgent {
 
             choice = tempNode.choice;
             if(choice === null){
-                console.log("MCTS returned a NULL choice. WTF DUDE? - 2/n");
-                //choice = this.fetch_random_key(options);
+                console.log("MCTS returned a NULL choice. THIS SHOULDN'T HAPPEN - 2/n");
                 choice = this.greedyDecide(gameState, options, mySide);
             }
 
             console.log("MY AWESOME CHOICE IS: " + choice);
-            //console.log("ITS UCB1 VALUE IS: " + tempNode.getUCB1());
             console.log("ITS Win/Play RATIO IS: " + (tempNode.winCount) + "/" + (tempNode.playCount));
-
-
-            /*console.log("ROOT'S CHILDREN's PLAYCOUNTS : ");
-            for(var i=0; i<rootNode.children.length;i++){
-                console.log("CHILD " + rootNode.children[i].choice + " Win/Play RATIO IS: " + (rootNode.children[i].winCount) + "/" + (rootNode.children[i].playCount));
-            }*/
 
             if((tempNode.winCount / tempNode.playCount) === 0){
                 console.log("Everyting seems equally bad. Making the greedy choice.");
@@ -566,38 +448,6 @@ class BWAgent {
     assumePokemon(pname, plevel, pgender, side) {
 
         var mySide = side.foe;
-        /*var oppPokemon = []
-
-        for(var i = 0; i < mySide.pokemon.length; i++) {
-
-            var nSet = {
-                species: Tools.getSpecies(mySide.pokemon[i].species),
-                name: mySide.pokemon[i].name,
-                level: mySide.pokemon[i].level,
-                gender: mySide.pokemon[i].gender,
-                evs: mySide.pokemon[i].evs,
-                ivs: mySide.pokemon[i].ivs,
-                nature: "Hardy",
-                moves: mySide.pokemon[i].moves,
-                ability: mySide.pokemon[i].ability
-            };
-
-            var basePokemon = new Pokemon(nSet, side);
-
-            oppPokemon.push(basePokemon)
-
-            //mySide.foe.pokemon[i] = basePokemon;
-            console.log('Assume set ' + i + 'th Pokemon: ' +  mySide.pokemon[i].name);
-
-        }
-        return oppPokemon;*/
-
-        /*var index = 0;
-        for(var i = 0; i < mySide.pokemon.length; i++) {
-            if (mySide.pokemon[i].name == pname){
-                index = i;
-            }
-        }*/
         var index = this.isInMyTeam(pname,mySide);
 
         if(index >= 0){
@@ -615,14 +465,6 @@ class BWAgent {
             };
             var basePokemon = new Pokemon(nSet, side);
             basePokemon.abilityData = { id: basePokemon.ability };
-            // If the species only has one ability, then the pokemon's ability can only have the one ability.
-            // Barring zoroark, skill swap, and role play nonsense.
-            // This will be pretty much how we digest abilities as well
-            /*if (Object.keys(basePokemon.template.abilities).length == 1) {
-             basePokemon.baseAbility = toId(basePokemon.template.abilities['0']);
-             basePokemon.ability = basePokemon.baseAbility;
-             basePokemon.abilityData = { id: basePokemon.ability };
-             }*/
             console.log("Assume set opponent's Pokemon: " + basePokemon.name + " as " +  mySide.pokemon[index].name);
             return basePokemon;
 
@@ -669,4 +511,5 @@ class BWAgent {
     }
 }
 
+exports.MCTreeNode = MCTreeNode;
 exports.Agent = BWAgent;

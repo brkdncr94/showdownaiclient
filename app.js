@@ -177,7 +177,7 @@ else {
     for (var i = 0; i < 2; i++) {
         var game = new OfflineGame();
         console.time('gametime');
-        scores.push(game.playGames(new NewAgent(), new OTLAgent(), 1, 'randommirror'));
+        scores.push(game.playGames(new BWAgent(), new OTLAgent(), 1, 'randommirror'));
         console.timeEnd('gametime');
     }
     console.log(scores);
