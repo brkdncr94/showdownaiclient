@@ -242,7 +242,7 @@ class BWAgent {
         // stop when one of the pokemon on the ground faint
         var terminalState = false;
 
-        for(var i=0; i<10; i++){
+        for(var i=0; i<5; i++){
             if(!this.isTerminal(treeNode.gameState, mySide.n)){
                 var cstate = this.cloneBattle(treeNode.gameState);
 
